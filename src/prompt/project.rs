@@ -63,6 +63,8 @@ pub struct ProjectOptions {
     pub package_manager: PackageManager,
     pub typescript: bool,
     pub tailwind: bool,
+    /// Run post‑install automation (install deps, git init, etc.)
+    pub run_postinstall: bool,
 }
 
 /// Prompt for a non‑empty, valid project name
@@ -113,5 +115,6 @@ pub fn gather_options() -> anyhow::Result<ProjectOptions> {
         package_manager,
         typescript,
         tailwind,
+        run_postinstall: true,
     })
 }

@@ -5,8 +5,8 @@ A small command‑line tool for scaffolding front‑end projects.
 ## What it does
 - Creates a **Next.js** or **React (Vite)** project.
 - Detects the available package manager (bun, pnpm, npm) and uses it.
-- Normalises the project name to lowercase to avoid issues on the scaffolding scripts.
-- Uses the modern `npm create` command, avoiding deprecated `npx` usage.
+- Automatically initializes a git repository with a default `.gitignore` after scaffolding.
+- (Dependency installation is handled by the scaffolding scripts themselves.)
 
 ## Available commands
 ```

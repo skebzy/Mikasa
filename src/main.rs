@@ -27,12 +27,14 @@ fn main() -> Result<()> {
             "React (Vite)" => cli::Commands::React,
             _ => unreachable!(),
         };
-        cli::Cli { command }
+        cli::Cli { command, no_postinstall: false }
     } else {
         cli::Cli::parse()
     };
 
-    let options = gather_options()?;
+    let mut options = gather_options()?;
+    // Respect the CLI flag to disable post‑install automation
+    options.run_postinstall = !cli.no_postinstall;
 
     dispatch(cli.command, options)
 }

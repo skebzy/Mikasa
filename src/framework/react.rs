@@ -5,6 +5,7 @@ use crate::prompt::project::PackageManager;
 use crate::prompt::project::ProjectOptions;
 use crate::shell;
 use crate::ui;
+use crate::utils::postinstall;
 use anyhow::Result;
 
 pub struct ReactFramework;
@@ -68,6 +69,10 @@ impl Framework for ReactFramework {
         }
 
         ui::success("React (Vite) project created!");
+        // Run optional post‑install steps
+        if opts.run_postinstall {
+            postinstall::run_postinstall(&opts)?;
+        }
         Ok(())
     }
 }

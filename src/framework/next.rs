@@ -4,6 +4,7 @@ use crate::framework::Framework;
 use crate::prompt::project::PackageManager;
 use crate::prompt::project::ProjectOptions;
 use crate::shell;
+use crate::utils::postinstall;
 use crate::ui;
 use anyhow::Result;
 
@@ -65,6 +66,10 @@ impl Framework for NextFramework {
         }
 
         ui::success("Next.js project created!");
+        // Run optional post‑install steps
+        if opts.run_postinstall {
+            postinstall::run_postinstall(&opts)?;
+        }
         Ok(())
     }
 }
