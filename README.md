@@ -1,6 +1,6 @@
 # Mikasa CLI
 
-A small command-line tool for scaffolding front‑end projects.
+A small command‑line tool for scaffolding front‑end projects.
 
 ## What it does
 - Creates a **Next.js** or **React (Vite)** project.
@@ -15,12 +15,18 @@ mikasa next     # scaffold a Next.js project (prompts for name, TS, Tailwind, et
 mikasa react    # scaffold a React (Vite) project (same options)
 ```
 
-## Installation
+## Prerequisites
+- Rust toolchain (stable) – install via https://rustup.rs
+- Node.js (>= 18) with npm (or bun/pnpm) on the PATH
+
+## Compilation / installation
 ```bash
-# Build and install locally
+# Build the binary
+cargo build --release
+# Install locally (adds `mikasa` to Cargo bin directory)
 cargo install --path .
 ```
-Or run directly without installing:
+Or run without installing:
 ```bash
 cargo run --
 ```
@@ -29,13 +35,16 @@ cargo run --
 ```bash
 # Create a Next.js project named "example"
 mikasa
-# (follow the prompts for package manager, TypeScript, Tailwind, etc.)
+# Follow the prompts for package manager, TypeScript, Tailwind, etc.
 ```
 
-## Development
+## Development helpers
 ```bash
 # Run tests (if any)
 cargo test
-# Run the binary in development mode
+# Run the binary in development mode with help output
 cargo run -- --help
 ```
+
+## License
+MIT © 2026 Skebzy

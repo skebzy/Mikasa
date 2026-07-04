@@ -1,6 +1,6 @@
 //! UI helper functions with colored output using `owo-colors`.
 
-use owo_colors::OwoColorize;
+//use owo_colors::OwoColorize;
 
 /// Print a step/message before an action.
 pub fn step(msg: &str) {
