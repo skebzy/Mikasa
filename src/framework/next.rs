@@ -17,10 +17,12 @@ impl Framework for NextFramework {
     fn run(&self, opts: ProjectOptions) -> Result<()> {
         ui::step(&format!("Creating Next.js project `{}`", opts.project_name));
 
+        // Lowercase once to avoid repeated allocations
+        let project_name = opts.project_name.to_lowercase();
         let mut args = vec![
             "create".to_string(),
             "next-app".to_string(),
-            opts.project_name.to_lowercase(),
+            project_name.clone(),
         ];
 
         if opts.typescript {
@@ -43,9 +45,17 @@ impl Framework for NextFramework {
                 shell::run("bun", &args)?;
             }
             PackageManager::Npm => {
-                // Use npm create command (args already include create/next-app)
-                let mut npm_args = args.clone();
-                npm_args.insert(3, "--".to_string());
+                // Build npm args without cloning the full args vector.
+                let mut npm_args = vec![
+                    "create".to_string(),
+                    "next-app".to_string(),
+                    project_name.clone(),
+                    "--".to_string(),
+                ];
+                // Append any extra flags (tailwind, eslint, app) that were already added to `args`
+                for flag in args.iter().skip(3) {
+                    npm_args.push(flag.clone());
+                }
                 shell::run("npm", &npm_args)?;
             }
             PackageManager::Pnpm => {
