@@ -4,8 +4,8 @@ use crate::framework::Framework;
 use crate::prompt::project::PackageManager;
 use crate::prompt::project::ProjectOptions;
 use crate::shell;
-use crate::utils::postinstall;
 use crate::ui;
+use crate::utils::postinstall;
 use anyhow::Result;
 
 pub struct NextFramework;
